@@ -1,0 +1,101 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    background-color: #f4f4f4;
+    display: flex;
+    flex-direction: column;
+    justify-content: unset;
+    align-items: center;
+    height: 100vh;
+    padding: 20px;
+}
+
+h1 {
+    font-size: 2.5em;
+    display: flex;
+    align-items: center;
+}
+
+.menu-section-nasi {
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    margin-bottom: 20px;
+    width: 100%;
+    max-width: 400px;
+}
+
+.menu-section-snack {
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    margin-bottom: 20px;
+    width: 100%;
+    max-width: 400px;
+}
+
+.menu-item {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.menu-item input[type="checkbox"] {
+    margin-right: 10px;
+    transform: scale(1.5);
+}
+
+.menu-item .menu-price {
+    margin-left: auto;
+    margin-right: 20px;
+}
+
+.total-price-section, #total-price {
+    margin-top: 20px;
+    background-color: #4CAF50; /* Warna latar belakang hijau */
+    color: #fff; /* Warna teks putih */
+    padding: 10px 20px; /* Ruang di sekitar teks */
+    border-radius: 8px; /* Sudut sudut elemen */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Bayangan untuk menonjolkan elemen */
+    font-weight: bold;
+    font-size: 1.0em;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.menu-item input[type="checkbox"]:checked+label {
+    animation: fadeIn 0.3s ease;
+    margin-right: 0;
+    margin-bottom: 10px;
+}
+
+@media (max-width: 768px) {
+    .menu-section {
+        max-width: 90%;
+    }
+}
+
+#capture-btn {
+    font-size: 1.0em;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #007bff; /* Warna tombol */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+
+

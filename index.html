@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Meta tags and title -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luanna Catering</title>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- External libraries -->
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+</head>
+
+<body>
+    <!-- Header -->
+    <h1>Luanna Catering</h1>
+
+    <!-- Nasi Box Section -->
+    <div class="menu-section-nasi">
+        <h2>Nasi Box</h2>
+        <div class="menu-item">
+            <input type="checkbox" id="nasibox-checkbox">
+            <label for="nasibox-checkbox">Ayam Bakar</label>
+            <span class="menu-price">10.000</span>
+        </div>
+        <div class="menu-item">
+            <input type="checkbox" id="sate-checkbox">
+            <label for="sate-checkbox">Sate Ayam</label>
+            <span class="menu-price">10.000</span>
+        </div>
+        <div class="menu-item">
+            <input type="checkbox" id="ikan-checkbox">
+            <label for="ikan-checkbox">Ikan Goreng</label>
+            <span class="menu-price">8.000</span>
+        </div>
+        <div class="menu-item">
+            <input type="checkbox" id="tahu-checkbox">
+            <label for="tahu-checkbox">Tahu Goreng</label>
+            <span class="menu-price">2.000</span>
+        </div>
+        <div class="menu-item">
+            <input type="checkbox" id="tongseng-checkbox">
+            <label for="tongseng-checkbox">Tongseng</label>
+            <span class="menu-price">6.000</span>
+        </div>
+        <div class="total-price-section" id="nasibox-total">Rp<span id="nasibox-price">0</span></div>
+    </div>
+
+    <!-- Snack Box Section -->
+    <div class="menu-section-snack">
+        <h2>Snack Box</h2>
+        <div class="menu-item">
+            <input type="checkbox" id="lemper-checkbox">
+            <label for="lemper-checkbox">Lemper</label>
+            <span class="menu-price">2.000</span>
+        </div>
+        <div class="menu-item">
+            <input type="checkbox" id="risoles-checkbox">
+            <label for="risoles-checkbox">Risoles</label>
+            <span class="menu-price">2.000</span>
+        </div>
+        <div class="menu-item">
+            <input type="checkbox" id="bolu-checkbox">
+            <label for="bolu-checkbox">Bolu Kukus</label>
+            <span class="menu-price">2.000</span>
+        </div>
+        <div class="total-price-section" id="snackbox-total">Rp<span id="snackbox-price">0</span></div>
+    </div>
+
+    <!-- Total Price and Screenshot Button -->
+    <div id="total-price">Total Price: Rp<span id="total">0</span></div>
+    <button id="capture-btn">Screenshot</button>
+
+    <hr><hr>
+    
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+
+</body>
+
+</html>
