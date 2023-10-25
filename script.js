@@ -16,6 +16,11 @@ function calculateNasiboxTotal() {
     calculateTotalPrice();
 }
 
+function getTotalPriceNasi() {
+    calculateNasiboxTotal();
+    return totalNasiboxPrice;
+}
+
 // Fungsi untuk menghitung total harga snack box berdasarkan jumlah kotak yang dipesan
 function calculateSnackboxTotal() {
     const quantity = parseInt(quantityInputSnack.value);
@@ -56,6 +61,8 @@ nasiboxItems.forEach(item => {
     item.addEventListener('change', calculateNasiboxTotal);
 });
 
+
+
 // Tambahkan event listener untuk setiap checkbox snack box
 snackboxItems.forEach(item => {
     item.addEventListener('change', calculateSnackboxTotal);
@@ -87,8 +94,7 @@ document.addEventListener('DOMContentLoaded', function () {
     captureBtn.addEventListener('click', function () {
         // Buat div baru untuk menyimpan elemen yang dicentang dan elemen lainnya
 
-        const namaPemesanInput = document.getElementById('nama-pemesan');
-        const namaPemesanValue = namaPemesanInput.value;
+        
 
         const clonedContent = document.createElement('div');
 
@@ -96,7 +102,10 @@ document.addEventListener('DOMContentLoaded', function () {
         const headerClone = document.querySelector('img').cloneNode(true);
         clonedContent.appendChild(headerClone);
 
-        const namaPemesanText = document.createElement('p')
+
+        const namaPemesanInput = document.getElementById('nama-pemesan');
+        const namaPemesanValue = namaPemesanInput.value;
+        const namaPemesanText = document.createElement('p');
         namaPemesanText.textContent = `${namaPemesanValue}`;
         namaPemesanText.style.marginTop = '0 px'; // Tambahkan margin atas
         clonedContent.appendChild(namaPemesanText);
@@ -105,9 +114,23 @@ document.addEventListener('DOMContentLoaded', function () {
         const nasiBoxClone = document.querySelector('.menu-section-nasi h2').cloneNode(true);
         clonedContent.appendChild(nasiBoxClone);
 
+        //total nasi
+        const jumlahBoxNasi = document.getElementById('quantity-nasi');
+        const jumlahBoxNasiValue = jumlahBoxNasi.value;
+        const jumlahBoxNasiText = document.createElement('p');
+        jumlahBoxNasiText.textContent = `Jumlah box nasi : ${jumlahBoxNasiValue}`;
+        clonedContent.appendChild(jumlahBoxNasiText);
+
         // Salin elemen Snack Box
         const snackBoxClone = document.querySelector('.menu-section-snack h2').cloneNode(true);
         clonedContent.appendChild(snackBoxClone);
+
+        //total snack
+        const jumlahBoxSnack = document.getElementById('quantity-snack');
+        const jumlahBoxSnackValue = jumlahBoxSnack.value;
+        const jumlahBoxSnackText = document.createElement('p');
+        jumlahBoxSnackText.textContent = `Jumlah box snack : ${jumlahBoxSnackValue}`;
+        clonedContent.appendChild(jumlahBoxSnackText);
 
         // Salin elemen Total Harga
         const totalHargaClone = document.getElementById('total-price').cloneNode(true);
