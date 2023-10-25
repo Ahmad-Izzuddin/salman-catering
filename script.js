@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const imgURL = canvas.toDataURL('image/png');
             const downloadLink = document.createElement('a');
             downloadLink.href = imgURL;
-            downloadLink.download = 'screenshot.png';
+            downloadLink.download = 'salmancatering.png';
             downloadLink.click();
         });
     });
