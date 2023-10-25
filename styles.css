@@ -16,30 +16,64 @@ h1 {
     align-items: center;
 }
 
-.menu-section-nasi {
-    padding: 20px;
+h4{
+    margin-bottom: 5px;
+}
+/* Gaya Tanggal, Bulan, dan Tahun */
+#tanggal-bulan-tahun {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1.2em;
+    color: #4CAF50; /* Warna hijau dari tema awal */
+}
+
+/* Gaya Menu Nasi Box dan Snack Box */
+.menu-section-nasi, .menu-section-snack {
     background-color: #fff;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
+    border-radius: 8px; /* Menyesuaikan dengan sudut elemen lain */
+    padding: 20px;
     margin-bottom: 20px;
     width: 100%;
     max-width: 400px;
 }
 
-.menu-section-snack {
-    padding: 20px;
-    background-color: #fff;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+.menu-section-nasi h2, .menu-section-snack h2 {
+    text-align: center;
+    background-color: #4CAF50; /* Warna hijau dari tema awal */
+    color: #fff;
+    padding: 10px 20px;
     border-radius: 8px;
-    margin-bottom: 20px;
-    width: 100%;
-    max-width: 400px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.total-price-section {
+    text-align: center;
+    background-color: #4CAF50; /* Warna hijau dari tema awal */
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    font-weight: bold;
+    font-size: 1.0em;
+    margin-top: 20px;
 }
 
 .menu-item {
-    margin-bottom: 15px;
+    margin-bottom: 5px;
     display: flex;
     align-items: center;
+}
+
+.menu-description ul {
+    margin-top: 5px; /* Menambahkan margin atas untuk daftar deskripsi menu */
+    padding-left: 43px; /* Memberi indent pada daftar deskripsi menu */
+    list-style-type: circle;
+    font-size: 0.8em;
+}
+
+.menu-description li {
+    margin-bottom: 5px; /* Memberi jarak antara setiap poin deskripsi */
 }
 
 .menu-item input[type="checkbox"] {
@@ -74,9 +108,10 @@ h1 {
 }
 
 .menu-item input[type="checkbox"]:checked+label {
-    animation: fadeIn 0.3s ease;
     margin-right: 0;
     margin-bottom: 10px;
+    margin: 0;
+    color: #4CAF50;
 }
 
 @media (max-width: 768px) {
@@ -96,6 +131,24 @@ h1 {
     cursor: pointer;
 }
 
+#capture-btn:hover {
+    background-color: #0056b3; /* Warna tombol saat dihover */
+}
+
+.hidden {
+    display: none;
+}
 
 
+.quantity-nasi, .quantity-snack {
+    font-size: 1em;
+    padding: 8px;
+    border: 1px solid #4CAF50; /* Sesuaikan dengan warna hijau tema */
+    border-radius: 5px;
+    margin-bottom: 10px;
+    width: 60px;
+    text-align: center;
+    margin-right: 10px;
+}
 
+/* Tambahkan CSS untuk efek highlight checkbox */

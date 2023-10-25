@@ -5,37 +5,51 @@ const nasiboxTotalPrice = document.getElementById('nasibox-price');
 const snackboxTotalPrice = document.getElementById('snackbox-price');
 const totalPrice = document.getElementById('total');
 const captureBtn = document.getElementById('capture-btn');
+const quantityInputNasi = document.getElementById('quantity-nasi');
+const quantityInputSnack = document.getElementById('quantity-snack');
 
-// Fungsi untuk menghitung total harga nasi box
+// Fungsi untuk menghitung total harga nasi box berdasarkan jumlah kotak yang dipesan
 function calculateNasiboxTotal() {
-    let total = 0;
-    nasiboxItems.forEach(item => {
-        if (item.checked) {
-            total += 1000*(parseInt(item.nextElementSibling.nextElementSibling.textContent));
-        }
-    });
-    nasiboxTotalPrice.textContent = total;
+    const quantity = parseInt(quantityInputNasi.value);
+    const totalNasiboxPrice = calculateTotalPriceForItems(nasiboxItems) * quantity;
+    nasiboxTotalPrice.textContent = totalNasiboxPrice;
     calculateTotalPrice();
 }
 
-// Fungsi untuk menghitung total harga snack box
+// Fungsi untuk menghitung total harga snack box berdasarkan jumlah kotak yang dipesan
 function calculateSnackboxTotal() {
+    const quantity = parseInt(quantityInputSnack.value);
+    const totalSnackboxPrice = calculateTotalPriceForItems(snackboxItems) * quantity;
+    snackboxTotalPrice.textContent = totalSnackboxPrice;
+    calculateTotalPrice();
+}
+
+// Fungsi untuk menghitung total harga berdasarkan item yang dipilih
+function calculateTotalPriceForItems(items) {
     let total = 0;
-    snackboxItems.forEach(item => {
-        if (item.checked) {
-            total += 1000*(parseInt(item.nextElementSibling.nextElementSibling.textContent));
+    items.forEach(item => {
+        if (item.checked) { // Periksa apakah checkbox dicentang
+            total += parseInt(item.nextElementSibling.nextElementSibling.textContent);
         }
     });
-    snackboxTotalPrice.textContent = total;
-    calculateTotalPrice();
+    return total;
 }
 
 // Fungsi untuk menghitung total harga keseluruhan
 function calculateTotalPrice() {
     const nasiboxPrice = parseInt(nasiboxTotalPrice.textContent);
     const snackboxPrice = parseInt(snackboxTotalPrice.textContent);
-    totalPrice.textContent = nasiboxPrice + snackboxPrice;
+    const totalPriceValue = nasiboxPrice + snackboxPrice;
+    totalPrice.textContent = isNaN(totalPriceValue) ? 0 : totalPriceValue;
 }
+
+// Tambahkan event listener pada input jumlah kotak
+quantityInputNasi.addEventListener('input', function () {
+    calculateNasiboxTotal();
+});
+quantityInputSnack.addEventListener('input', function () {
+    calculateSnackboxTotal();
+});
 
 // Tambahkan event listener untuk setiap checkbox nasi box
 nasiboxItems.forEach(item => {
@@ -49,10 +63,17 @@ snackboxItems.forEach(item => {
 
 // Fungsi untuk menanggapi saat tombol "Screenshot" ditekan
 document.addEventListener('DOMContentLoaded', function () {
-    const captureBtn = document.getElementById('capture-btn');
-
     captureBtn.addEventListener('click', function () {
-        html2canvas(document.body).then(function(canvas) {
+        const checkedNasiBoxItems = Array.from(nasiboxItems).filter(item => item.checked);
+        const checkedSnackBoxItems = Array.from(snackboxItems).filter(item => item.checked);
+
+        const nasiboxTotalPriceValue = calculateTotalPriceForItems(checkedNasiBoxItems);
+        const snackboxTotalPriceValue = calculateTotalPriceForItems(checkedSnackBoxItems);
+        const totalPriceValue = nasiboxTotalPriceValue + snackboxTotalPriceValue;
+
+        captureBtn.classList.add('hidden');
+        html2canvas(document.body).then(function (canvas) {
+            captureBtn.classList.remove('hidden');
             const imgURL = canvas.toDataURL('image/png');
             const downloadLink = document.createElement('a');
             downloadLink.href = imgURL;
