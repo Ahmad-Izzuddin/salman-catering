@@ -62,22 +62,95 @@ snackboxItems.forEach(item => {
 });
 
 // Fungsi untuk menanggapi saat tombol "Screenshot" ditekan
+// document.addEventListener('DOMContentLoaded', function () {
+//     captureBtn.addEventListener('click', function () {
+//         const checkedNasiBoxItems = Array.from(nasiboxItems).filter(item => item.checked);
+//         const checkedSnackBoxItems = Array.from(snackboxItems).filter(item => item.checked);
+
+//         const nasiboxTotalPriceValue = calculateTotalPriceForItems(checkedNasiBoxItems);
+//         const snackboxTotalPriceValue = calculateTotalPriceForItems(checkedSnackBoxItems);
+//         const totalPriceValue = nasiboxTotalPriceValue + snackboxTotalPriceValue;
+
+//         captureBtn.classList.add('hidden');
+//         html2canvas(document.body).then(function (canvas) {
+//             captureBtn.classList.remove('hidden');
+//             const imgURL = canvas.toDataURL('image/png');
+//             const downloadLink = document.createElement('a');
+//             downloadLink.href = imgURL;
+//             downloadLink.download = 'screenshot.png';
+//             downloadLink.click();
+//         });
+//     });
+// });
+
 document.addEventListener('DOMContentLoaded', function () {
     captureBtn.addEventListener('click', function () {
+        // Buat div baru untuk menyimpan elemen yang dicentang dan elemen lainnya
+
+        const namaPemesanInput = document.getElementById('nama-pemesan');
+        const namaPemesanValue = namaPemesanInput.value;
+
+        const clonedContent = document.createElement('div');
+
+        // Salin elemen header ("Luanna Catering")
+        const headerClone = document.querySelector('img').cloneNode(true);
+        clonedContent.appendChild(headerClone);
+
+        const namaPemesanText = document.createElement('p')
+        namaPemesanText.textContent = `${namaPemesanValue}`;
+        namaPemesanText.style.marginTop = '0 px'; // Tambahkan margin atas
+        clonedContent.appendChild(namaPemesanText);
+
+        // Salin elemen Nasi Box
+        const nasiBoxClone = document.querySelector('.menu-section-nasi h2').cloneNode(true);
+        clonedContent.appendChild(nasiBoxClone);
+
+        // Salin elemen Snack Box
+        const snackBoxClone = document.querySelector('.menu-section-snack h2').cloneNode(true);
+        clonedContent.appendChild(snackBoxClone);
+
+        // Salin elemen Total Harga
+        const totalHargaClone = document.getElementById('total-price').cloneNode(true);
+        clonedContent.appendChild(totalHargaClone);
+
+        const emptyLine = document.createElement('br');
+        clonedContent.appendChild(emptyLine);
+
+        // Salin elemen yang dicentang dari Nasi Box
         const checkedNasiBoxItems = Array.from(nasiboxItems).filter(item => item.checked);
+        checkedNasiBoxItems.forEach(item => {
+            const clone = item.parentElement.cloneNode(true);
+            nasiBoxClone.appendChild(clone);
+        });
+
+        // Salin elemen yang dicentang dari Snack Box
         const checkedSnackBoxItems = Array.from(snackboxItems).filter(item => item.checked);
+        checkedSnackBoxItems.forEach(item => {
+            const clone = item.parentElement.cloneNode(true);
+            snackBoxClone.appendChild(clone);
+        });
 
-        const nasiboxTotalPriceValue = calculateTotalPriceForItems(checkedNasiBoxItems);
-        const snackboxTotalPriceValue = calculateTotalPriceForItems(checkedSnackBoxItems);
-        const totalPriceValue = nasiboxTotalPriceValue + snackboxTotalPriceValue;
+        // Sembunyikan div untuk menghindari tampilan ganda
+        clonedContent.style.position = 'absolute';
+        clonedContent.style.left = '-9999px';
+        document.body.appendChild(clonedContent);
 
-        captureBtn.classList.add('hidden');
-        html2canvas(document.body).then(function (canvas) {
-            captureBtn.classList.remove('hidden');
+
+        totalHargaClone.style.fontSize = '18px'; // Sesuaikan ukuran font sesuai kebutuhan Anda
+        totalHargaClone.style.fontWeight = 'bold';
+        totalHargaClone.style.textAlign = 'center';
+
+        headerClone.style.margin = '0 auto';
+
+        // Tangkap layar dari salinan konten
+        html2canvas(clonedContent).then(function (canvas) {
+            // Hapus div yang digunakan untuk salinan konten
+            document.body.removeChild(clonedContent);
+
             const imgURL = canvas.toDataURL('image/png');
             const downloadLink = document.createElement('a');
             downloadLink.href = imgURL;
-            downloadLink.download = 'salmancatering.png';
+            downloadLink.download = 'salman_catering.jpg';
             downloadLink.click();
         });
     });

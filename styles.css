@@ -16,6 +16,26 @@ h1 {
     align-items: center;
 }
 
+img {
+    width: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.input-nama {
+    width: calc(50% - 40px);
+    padding: 10px;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    text-align: center; /* Mengatur teks di tengah kotak input */
+    box-sizing: border-box; /* Memastikan padding tidak mempengaruhi lebar total */
+    display: block;
+}
+
 h4{
     margin-bottom: 5px;
 }
@@ -60,9 +80,9 @@ h4{
 }
 
 .menu-item {
-    margin-bottom: 5px;
     display: flex;
     align-items: center;
+    margin-bottom: 10px;
 }
 
 .menu-description ul {
@@ -97,6 +117,21 @@ h4{
     font-size: 1.0em;
 }
 
+#total-price {
+    margin-top: 20px;
+    background-color: #f0ad20; /* Warna latar belakang hijau */
+    color: #fff; /* Warna teks putih */
+    padding: 10px 20px; /* Ruang di sekitar teks */
+    border-radius: 8px; /* Sudut sudut elemen */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Bayangan untuk menonjolkan elemen */
+    font-weight: bold;
+    font-size: 1.0em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 300px;
+}
+
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -123,11 +158,11 @@ h4{
 #capture-btn {
     font-size: 1.0em;
     margin-top: 20px;
-    padding: 10px 20px;
+    padding: 20px 30px;
     background-color: #007bff; /* Warna tombol */
     color: #fff;
     border: none;
-    border-radius: 5px;
+    border-radius: 50px;
     cursor: pointer;
 }
 
@@ -151,4 +186,6 @@ h4{
     margin-right: 10px;
 }
 
-/* Tambahkan CSS untuk efek highlight checkbox */
+p {
+    text-align: center;
+}
