@@ -24,16 +24,14 @@ img {
 }
 
 .input-nama {
-    width: calc(50% - 40px);
-    padding: 10px;
-    margin: 0 auto;
+    background-color: #fff;
+    border-radius: 8px; /* Menyesuaikan dengan sudut elemen lain */
+    padding: 15px;
     margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-    text-align: center; /* Mengatur teks di tengah kotak input */
-    box-sizing: border-box; /* Memastikan padding tidak mempengaruhi lebar total */
-    display: block;
+    width: 100%;
+    max-width: 400px;
+    border: 2px solid #4CAF50;
+    text-align: center;
 }
 
 h4{
