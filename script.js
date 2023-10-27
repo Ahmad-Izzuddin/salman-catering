@@ -68,113 +68,67 @@ snackboxItems.forEach(item => {
     item.addEventListener('change', calculateSnackboxTotal);
 });
 
-// Fungsi untuk menanggapi saat tombol "Screenshot" ditekan
-// document.addEventListener('DOMContentLoaded', function () {
-//     captureBtn.addEventListener('click', function () {
-//         const checkedNasiBoxItems = Array.from(nasiboxItems).filter(item => item.checked);
-//         const checkedSnackBoxItems = Array.from(snackboxItems).filter(item => item.checked);
-
-//         const nasiboxTotalPriceValue = calculateTotalPriceForItems(checkedNasiBoxItems);
-//         const snackboxTotalPriceValue = calculateTotalPriceForItems(checkedSnackBoxItems);
-//         const totalPriceValue = nasiboxTotalPriceValue + snackboxTotalPriceValue;
-
-//         captureBtn.classList.add('hidden');
-//         html2canvas(document.body).then(function (canvas) {
-//             captureBtn.classList.remove('hidden');
-//             const imgURL = canvas.toDataURL('image/png');
-//             const downloadLink = document.createElement('a');
-//             downloadLink.href = imgURL;
-//             downloadLink.download = 'screenshot.png';
-//             downloadLink.click();
-//         });
-//     });
-// });
-
 document.addEventListener('DOMContentLoaded', function () {
     captureBtn.addEventListener('click', function () {
-        // Buat div baru untuk menyimpan elemen yang dicentang dan elemen lainnya
-
-        
-
-        const clonedContent = document.createElement('div');
-
-        // Salin elemen header ("Luanna Catering")
-        const headerClone = document.querySelector('img').cloneNode(true);
-        clonedContent.appendChild(headerClone);
-
-
+        // Dapatkan nilai nama pemesan
         const namaPemesanInput = document.getElementById('nama-pemesan');
         const namaPemesanValue = namaPemesanInput.value;
-        const namaPemesanText = document.createElement('p');
-        namaPemesanText.textContent = `${namaPemesanValue}`;
-        namaPemesanText.style.marginTop = '0 px'; // Tambahkan margin atas
-        clonedContent.appendChild(namaPemesanText);
 
-        // Salin elemen Nasi Box
-        const nasiBoxClone = document.querySelector('.menu-section-nasi h2').cloneNode(true);
-        clonedContent.appendChild(nasiBoxClone);
+        // Dapatkan nilai jumlah box nasi dan snack
+        const jumlahBoxNasi = document.getElementById('quantity-nasi').value;
+        const jumlahBoxSnack = document.getElementById('quantity-snack').value;
 
-        //total nasi
-        const jumlahBoxNasi = document.getElementById('quantity-nasi');
-        const jumlahBoxNasiValue = jumlahBoxNasi.value;
-        const jumlahBoxNasiText = document.createElement('p');
-        jumlahBoxNasiText.textContent = `Jumlah box nasi : ${jumlahBoxNasiValue}`;
-        clonedContent.appendChild(jumlahBoxNasiText);
+        // Dapatkan elemen yang dicentang dari Nasi Box
+        const checkedNasiBoxItems = Array.from(nasiboxItems).filter(item => item.checked).map(item => item.parentElement.textContent.trim().split('\n')[0].trim());
 
-        // Salin elemen Snack Box
-        const snackBoxClone = document.querySelector('.menu-section-snack h2').cloneNode(true);
-        clonedContent.appendChild(snackBoxClone);
+        // Dapatkan elemen yang dicentang dari Snack Box
+        const checkedSnackBoxItems = Array.from(snackboxItems).filter(item => item.checked).map(item => item.parentElement.textContent.trim().split('\n')[0].trim());
 
-        //total snack
-        const jumlahBoxSnack = document.getElementById('quantity-snack');
-        const jumlahBoxSnackValue = jumlahBoxSnack.value;
-        const jumlahBoxSnackText = document.createElement('p');
-        jumlahBoxSnackText.textContent = `Jumlah box snack : ${jumlahBoxSnackValue}`;
-        clonedContent.appendChild(jumlahBoxSnackText);
+        // Dapatkan nilai total harga
+        const totalHargaValue = document.getElementById('total').textContent;
 
-        // Salin elemen Total Harga
-        const totalHargaClone = document.getElementById('total-price').cloneNode(true);
-        clonedContent.appendChild(totalHargaClone);
-
-        const emptyLine = document.createElement('br');
-        clonedContent.appendChild(emptyLine);
-
-        // Salin elemen yang dicentang dari Nasi Box
-        const checkedNasiBoxItems = Array.from(nasiboxItems).filter(item => item.checked);
+        // Tampilkan informasi pesanan ke konsol
+        console.log('Informasi Pesanan:');
+        console.log('Nama Pemesan:', namaPemesanValue);
+        console.log('Jumlah Box Nasi:', jumlahBoxNasi);
+        console.log('Nasi Box Items:');
         checkedNasiBoxItems.forEach(item => {
-            const clone = item.parentElement.cloneNode(true);
-            nasiBoxClone.appendChild(clone);
+            console.log('-', item);
         });
-
-        // Salin elemen yang dicentang dari Snack Box
-        const checkedSnackBoxItems = Array.from(snackboxItems).filter(item => item.checked);
+        console.log('Jumlah Box Snack:', jumlahBoxSnack);
+        console.log('Snack Box Items:');
         checkedSnackBoxItems.forEach(item => {
-            const clone = item.parentElement.cloneNode(true);
-            snackBoxClone.appendChild(clone);
+            console.log('-', item);
         });
+        console.log('Total Harga:', totalHargaValue);
 
-        // Sembunyikan div untuk menghindari tampilan ganda
-        clonedContent.style.position = 'absolute';
-        clonedContent.style.left = '-9999px';
-        document.body.appendChild(clonedContent);
+        // Bangun teks pesan untuk WhatsApp
+        const whatsappMessage = `~ Salman Catering ~%0a`
+            + `Nama Pemesan: ${namaPemesanValue}%0a`
+            + `Jumlah Box Nasi: ${jumlahBoxNasi}%0a`
+            + `List Nasi Box:%0a${checkedNasiBoxItems.map(item => `- ${item}`).join('%0a')}` // Menyusun item nasi box dengan format "- Item Nasi"
+            + `%0aJumlah Box Snack: ${jumlahBoxSnack}%0a`
+            + `List Snack Box:%0a${checkedSnackBoxItems.map(item => `- ${item}`).join('%0a')}`; // Menyusun item snack box dengan format "- Item Snack"
+            + `Total Harga ${totalHargaValue}`
 
+        // Dapatkan nomor WhatsApp
+        var phoneNumber = "+6281229982755"
 
-        totalHargaClone.style.fontSize = '18px'; // Sesuaikan ukuran font sesuai kebutuhan Anda
-        totalHargaClone.style.fontWeight = 'bold';
-        totalHargaClone.style.textAlign = 'center';
+        // Bangun URL untuk mengirim pesan WhatsApp
+        var whatsappURL = "https://wa.me/" + phoneNumber + "?text="
+        +"~ Salman Catering ~" + "%0a"
+        + "%0a" + "Nama Pemesan : " + namaPemesanValue + "%0a"
+        + "%0a" + "Jumlah box nasi : " + jumlahBoxNasi + "%0a"
+        +"List nasi : " + "%0a"
+        +checkedNasiBoxItems.map(item => `- ${item}`).join('%0a')
+        + "%0a" + "%0a" + "Jumlah box snack : " + jumlahBoxSnack + "%0a"
+        +"List snack : " + "%0a"
+        +checkedSnackBoxItems.map(item => `- ${item}`).join('%0a')
+        + "%0a" + "%0a" + "*Total harga : " + totalHargaValue + "*";
 
-        headerClone.style.margin = '0 auto';
-
-        // Tangkap layar dari salinan konten
-        html2canvas(clonedContent).then(function (canvas) {
-            // Hapus div yang digunakan untuk salinan konten
-            document.body.removeChild(clonedContent);
-
-            const imgURL = canvas.toDataURL('image/png');
-            const downloadLink = document.createElement('a');
-            downloadLink.href = imgURL;
-            downloadLink.download = 'salman_catering.jpg';
-            downloadLink.click();
-        });
+        // Buka tautan WhatsApp dengan pesan yang disiapkan
+        window.open(whatsappURL, '_blank');
+        
     });
 });
+
