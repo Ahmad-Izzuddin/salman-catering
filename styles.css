@@ -185,3 +185,8 @@ p {
 .whatsapp-icon {
     font-size: 50px; /* Atur ukuran ikon sesuai kebutuhan Anda */
 }
+
+input[type="time"],
+input[type="date"] {
+    text-align: center; /* Teks di tengah input */
+}
