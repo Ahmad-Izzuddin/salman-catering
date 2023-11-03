@@ -10,12 +10,6 @@ body {
     padding: 20px;
 }
 
-h1 {
-    font-size: 2.5em;
-    display: flex;
-    align-items: center;
-}
-
 img {
     width: 300px;
     display: flex;
@@ -23,7 +17,7 @@ img {
     justify-content: center;
 }
 
-.input-nama {
+.input-identity {
     background-color: #fff;
     border-radius: 8px; /* Menyesuaikan dengan sudut elemen lain */
     padding: 15px;

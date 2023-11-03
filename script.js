@@ -71,8 +71,14 @@ snackboxItems.forEach(item => {
 document.addEventListener('DOMContentLoaded', function () {
     captureBtn.addEventListener('click', function () {
         // Dapatkan nilai nama pemesan
-        const namaPemesanInput = document.getElementById('nama-pemesan');
+        const namaPemesanInput = document.getElementById('identity-pemesan');
         const namaPemesanValue = namaPemesanInput.value;
+
+        // Dapatkan nilai tanggal pemesan
+
+        // Dapatkan nilai jam diantar
+
+        // Dapatkan nilai
 
         // Dapatkan nilai jumlah box nasi dan snack
         const jumlahBoxNasi = document.getElementById('quantity-nasi').value;
@@ -102,17 +108,8 @@ document.addEventListener('DOMContentLoaded', function () {
         });
         console.log('Total Harga:', totalHargaValue);
 
-        // Bangun teks pesan untuk WhatsApp
-        const whatsappMessage = `~ Salman Catering ~%0a`
-            + `Nama Pemesan: ${namaPemesanValue}%0a`
-            + `Jumlah Box Nasi: ${jumlahBoxNasi}%0a`
-            + `List Nasi Box:%0a${checkedNasiBoxItems.map(item => `- ${item}`).join('%0a')}` // Menyusun item nasi box dengan format "- Item Nasi"
-            + `%0aJumlah Box Snack: ${jumlahBoxSnack}%0a`
-            + `List Snack Box:%0a${checkedSnackBoxItems.map(item => `- ${item}`).join('%0a')}`; // Menyusun item snack box dengan format "- Item Snack"
-            + `Total Harga ${totalHargaValue}`
-
         // Dapatkan nomor WhatsApp
-        var phoneNumber = "+6281229982755"
+        var phoneNumber = "+6282133175770"
 
         // Bangun URL untuk mengirim pesan WhatsApp
         var whatsappURL = "https://wa.me/" + phoneNumber + "?text="
