@@ -70,64 +70,90 @@ snackboxItems.forEach(item => {
 
 document.addEventListener('DOMContentLoaded', function () {
     captureBtn.addEventListener('click', function () {
+
         // Dapatkan nilai nama pemesan
         const namaPemesanInput = document.getElementById('nama-pemesan');
         const namaPemesanValue = namaPemesanInput.value;
 
-        // Dapatkan nilai jumlah box nasi dan snack
-        const jumlahBoxNasi = document.getElementById('quantity-nasi').value;
-        const jumlahBoxSnack = document.getElementById('quantity-snack').value;
+        // Dapatkan nilai tanggal pemesan
+        const tanggalPesananDiantarValue = document.getElementById('tanggal-pemesan').value;
 
-        // Dapatkan elemen yang dicentang dari Nasi Box
-        const checkedNasiBoxItems = Array.from(nasiboxItems).filter(item => item.checked).map(item => item.parentElement.textContent.trim().split('\n')[0].trim());
+        // Dapatkan nilai jam diantar
+        const jamPengantaranValue = document.getElementById('jam-pemesan').value;
 
-        // Dapatkan elemen yang dicentang dari Snack Box
-        const checkedSnackBoxItems = Array.from(snackboxItems).filter(item => item.checked).map(item => item.parentElement.textContent.trim().split('\n')[0].trim());
+        // Dapatkan nilai lokasi
+        const lokasiPengantaranValue = document.getElementById('lokasi-pemesan').value;
 
-        // Dapatkan nilai total harga
-        const totalHargaValue = document.getElementById('total').textContent;
+        if(namaPemesanValue.length === 0 || tanggalPesananDiantarValue.length === 0 || jamPengantaranValue.length === 0 || lokasiPengantaranValue.length === 0) {
+            window.scrollTo(0, 0);
+            setTimeout(function() {
+                // Menggulir halaman ke atas
+                alert('Informasi pemesan belum diisi');
+            }, 1);          
+        }
+        else {
+            // Dapatkan nilai jumlah box nasi dan snack
+            const jumlahBoxNasi = document.getElementById('quantity-nasi').value;
+            const jumlahBoxSnack = document.getElementById('quantity-snack').value;
 
-        // Tampilkan informasi pesanan ke konsol
-        console.log('Informasi Pesanan:');
-        console.log('Nama Pemesan:', namaPemesanValue);
-        console.log('Jumlah Box Nasi:', jumlahBoxNasi);
-        console.log('Nasi Box Items:');
-        checkedNasiBoxItems.forEach(item => {
-            console.log('-', item);
-        });
-        console.log('Jumlah Box Snack:', jumlahBoxSnack);
-        console.log('Snack Box Items:');
-        checkedSnackBoxItems.forEach(item => {
-            console.log('-', item);
-        });
-        console.log('Total Harga:', totalHargaValue);
+            // Dapatkan elemen yang dicentang dari Nasi Box
+            const checkedNasiBoxItems = Array.from(nasiboxItems).filter(item => item.checked).map(item => item.parentElement.textContent.trim().split('\n')[0].trim());
 
-        // Bangun teks pesan untuk WhatsApp
-        const whatsappMessage = `~ Salman Catering ~%0a`
-            + `Nama Pemesan: ${namaPemesanValue}%0a`
-            + `Jumlah Box Nasi: ${jumlahBoxNasi}%0a`
-            + `List Nasi Box:%0a${checkedNasiBoxItems.map(item => `- ${item}`).join('%0a')}` // Menyusun item nasi box dengan format "- Item Nasi"
-            + `%0aJumlah Box Snack: ${jumlahBoxSnack}%0a`
-            + `List Snack Box:%0a${checkedSnackBoxItems.map(item => `- ${item}`).join('%0a')}`; // Menyusun item snack box dengan format "- Item Snack"
-            + `Total Harga ${totalHargaValue}`
+            // Dapatkan elemen yang dicentang dari Snack Box
+            const checkedSnackBoxItems = Array.from(snackboxItems).filter(item => item.checked).map(item => item.parentElement.textContent.trim().split('\n')[0].trim());
 
-        // Dapatkan nomor WhatsApp
-        var phoneNumber = "+6281229982755"
+            // Dapatkan nilai total harga
+            const totalHargaValue = document.getElementById('total').textContent;
 
-        // Bangun URL untuk mengirim pesan WhatsApp
-        var whatsappURL = "https://wa.me/" + phoneNumber + "?text="
-        +"~ Salman Catering ~" + "%0a"
-        + "%0a" + "Nama Pemesan : " + namaPemesanValue + "%0a"
-        + "%0a" + "Jumlah box nasi : " + jumlahBoxNasi + "%0a"
-        +"List nasi : " + "%0a"
-        +checkedNasiBoxItems.map(item => `- ${item}`).join('%0a')
-        + "%0a" + "%0a" + "Jumlah box snack : " + jumlahBoxSnack + "%0a"
-        +"List snack : " + "%0a"
-        +checkedSnackBoxItems.map(item => `- ${item}`).join('%0a')
-        + "%0a" + "%0a" + "*Total harga : " + totalHargaValue + "*";
+            // Tampilkan informasi pesanan ke konsol
+            console.log('Informasi Pesanan');
 
-        // Buka tautan WhatsApp dengan pesan yang disiapkan
-        window.open(whatsappURL, '_blank');
+            console.log('Nama Pemesan:', namaPemesanValue);
+            console.log('Tanggal Pesanan Diantar:', tanggalPesananDiantarValue);
+            console.log('Jam Pengantaran:', jamPengantaranValue);
+            console.log('Lokasi Pengantaran:', lokasiPengantaranValue);
+
+            console.log('')
+
+
+            console.log('Jumlah Box Nasi:', jumlahBoxNasi);
+            console.log('Nasi Box Items:');
+            checkedNasiBoxItems.forEach(item => {
+                console.log('-', item);
+            });
+            console.log('Jumlah Box Snack:', jumlahBoxSnack);
+            console.log('Snack Box Items:');
+            checkedSnackBoxItems.forEach(item => {
+                console.log('-', item);
+            });
+            console.log('Total Harga:', totalHargaValue);
+
+            console.log('')
+            console.log('-------------------------------------------------')
+            console.log('')
+
+            // Dapatkan nomor WhatsApp
+            var phoneNumber = "+6282133175770"
+
+            // Bangun URL untuk mengirim pesan WhatsApp
+            var whatsappURL = "https://wa.me/" + phoneNumber + "?text="
+            +"~ Salman Catering ~" + "%0a"
+            + "%0a" + "Nama Pemesan : " + namaPemesanValue
+            + "%0a" + "Tanggal Pesanan Diantar : " + tanggalPesananDiantarValue
+            + "%0a" + "Jam Pengantaran : " + jamPengantaranValue
+            + "%0a" + "Lokasi Pengantaran : " + lokasiPengantaranValue + "%0a"
+
+            + "%0a" + "Jumlah box nasi : " + jumlahBoxNasi + "%0a"
+            +"List nasi : " + "%0a"
+            +checkedNasiBoxItems.map(item => `- ${item}`).join('%0a')
+            + "%0a" + "%0a" + "Jumlah box snack : " + jumlahBoxSnack + "%0a"
+            +"List snack : " + "%0a"
+            +checkedSnackBoxItems.map(item => `- ${item}`).join('%0a')
+            + "%0a" + "%0a" + "*Total harga : " + totalHargaValue + "*";
+
+            // Buka tautan WhatsApp dengan pesan yang disiapkan
+            window.open(whatsappURL, '_blank');
+        }
         
     });
 });
