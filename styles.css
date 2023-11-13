@@ -147,6 +147,28 @@ h4{
     }
 }
 
+
+#peringatan {
+    font-size: 1.0em;
+    margin-top: 20px;
+    padding: 20px 30px;
+    background-color: #fff; /* Warna tombol */
+    color: #000000;
+    border-style: outset;
+    border-color: #000000;
+    border-radius: 50px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 1.5vh;
+}
+
+#peringatan i {
+    font-size: 3vh;
+    color: red;
+}
+
+
 #capture-btn {
     font-size: 1.0em;
     margin-top: 20px;
