@@ -133,7 +133,7 @@ document.addEventListener('DOMContentLoaded', function () {
             console.log('')
 
             // Dapatkan nomor WhatsApp
-            var phoneNumber = "+6282133175770"
+            var phoneNumber = "+6281229982755"
 
             // Bangun URL untuk mengirim pesan WhatsApp
             var whatsappURL = "https://wa.me/" + phoneNumber + "?text="
@@ -157,4 +157,5 @@ document.addEventListener('DOMContentLoaded', function () {
         
     });
 });
+
 
